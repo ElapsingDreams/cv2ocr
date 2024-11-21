@@ -19,7 +19,7 @@ for letter in letters:
     text_width, text_height = font.getbbox(letter)[2:4]
 
     # 创建灰度图像
-    image = Image.new('L', (text_width + 2, text_height + 2), background_color[0])
+    image = Image.new('L', (text_width + 8, text_height + 8), background_color[0])
     draw = ImageDraw.Draw(image)
 
     x = (image.width - text_width) // 2
@@ -31,13 +31,13 @@ for letter in letters:
     threshold = 128  # 设置阈值
     image = image.point(lambda p: p > threshold and 255 or 0, '1')  # 应用阈值，转换为二值图像
 
-    # inverted_image = image.point(lambda p: 255 - p)
+    inverted_image = image.point(lambda p: 255 - p)
 
     prefix = 'up_' if letter.isupper() else 'down_'
     filename = f'{prefix}{letter}.png'
 
-    # inverted_image.save(os.path.join(output_folder, filename))
-    image.save(os.path.join(output_folder, filename))
+    inverted_image.save(os.path.join(output_folder, filename))
+    # image.save(os.path.join(output_folder, filename))
     print(f'Saved {filename}')
 
 print('Done!')

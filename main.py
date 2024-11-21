@@ -95,4 +95,4 @@ def main(image_path, template_paths):
 
 if __name__ == '__main__':
     template_paths = os.listdir("./res")
-    main('test.png', template_paths)
+    main('text_image.png', template_paths)
